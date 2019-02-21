@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 from bs4.element import Comment
 import urllib.request
 import collections
-
+import nltk
 
 def generateTokens(input_string):
     Token = []
@@ -52,10 +52,9 @@ def text_from_html(body):
     return u" ".join(t.strip() for t in visible_texts)
 
 
-def parserMain(path):
-    # html = urllib.request.urlopen(path).read()
-    f = open(path)
-    page_string = text_from_html(f)
+def parserMain(path, code):
+    html = urllib.request.urlopen(path).read()
+    page_string = text_from_html(html)
 
     Token = generateTokens(page_string)
 
