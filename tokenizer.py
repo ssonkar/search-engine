@@ -2,12 +2,10 @@ from bs4 import BeautifulSoup
 from bs4.element import Comment
 import urllib.request
 import collections
-import nltk
+from nltk.stem.porter import*
 import indexFormation
 
-
 def generateTokens(input_string):
-    from nltk.stem.porter import *
     stemmer = PorterStemmer()
     tokens = []
     temp = ''

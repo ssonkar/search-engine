@@ -1,3 +1,5 @@
+import zipfile
+
 def addTokens(token_freq, file_no):
     zfile_name = ''
     f_name = str(token[0])+''
@@ -5,5 +7,6 @@ def addTokens(token_freq, file_no):
         for f_name in z.namelist():
             f = open(f_name, a)
             for token in token_freq:
-                f.write(token+":"+token_freq[token]+':'fine_no+'\n')
+                txt = token+":"+token_freq[token]+':'+file_no+'\\n'
+                f.write(txt)
             f.close()
