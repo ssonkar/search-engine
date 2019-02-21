@@ -65,4 +65,12 @@ def parserMain(text, code):
 
     if('' in token_frequency):
         del token_frequency['']
-    #indexFormation.addTokens(token_frequency, code)
+    token_frequency_ordered = {}
+    from string import ascii_lowercase
+    for c in ascii_lowercase:
+        token_frequency_ordered[c] = {}
+    for token in token_frequency:
+        token_frequency_ordered[token[0]][token] = token_frequency[token]
+    return token_frequency_ordered
+
+    #indexFormation.addTokens(token_frequency_ordered,code)
