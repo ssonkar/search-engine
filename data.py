@@ -4,10 +4,10 @@ def read_texts(zipfname):
     import tokenizer
     with zipfile.ZipFile(zipfname) as z:
         for filename in z.namelist():
-            if not os.path.isdir(filename):
+            if not filename[-1]=='/' :
                 print('Reading File '+ filename)
-                with z.open(filename) as f:
-                    freq = tokenizer.parserMain(f)
+                freq = tokenizer.parserMain(z.read(filename))
+                print(freq)
 
         
 
