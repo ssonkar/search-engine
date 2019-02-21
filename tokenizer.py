@@ -6,17 +6,20 @@ import nltk
 import indexFormation
 
 def generateTokens(input_string):
-    Token = []
+    from nltk.stem.porter import *
+    stemmer = PorterStemmer()
+    tokens = []
     temp = ''
     for c in input_string:
         if(c.isdigit() or c.isalpha()):
             temp += c.lower()
         elif(temp != ''):
-            Token.append(temp)
+            tokens.append(temp)
             temp = ''
     if(temp != ''):
-        Token.append(temp)
-    return Token
+        tokens.append(temp)
+    stemmed_tokens = [stemmer.stem(token) for token in tokens]
+    return stemmed_tokens
 
 
 def tag_visible(element):
@@ -56,9 +59,9 @@ def text_from_html(body):
 def parserMain(text, code):
     page_string = text_from_html(text)
 
-    Token = generateTokens(page_string)
+    tokens = generateTokens(page_string)
 
-    token_frequency = collections.Counter(Token)
+    token_frequency = collections.Counter(tokens)
 
     if('' in token_frequency):
         del token_frequency['']
