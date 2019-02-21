@@ -63,7 +63,3 @@ def parserMain(path):
 
     if('' in token_frequency):
         del token_frequency['']
-    
-
-
-parserMain('0')
