@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 from bs4.element import Comment
 import urllib
 import collections
-
+import nltk
 
 def generateTokens(input_string):
     temp_token = input_string.split(' ')
@@ -41,7 +41,7 @@ def text_from_html(body):
     return u" ".join(t.strip() for t in visible_texts)
 
 
-def parserMain(path):
+def parserMain(path, code):
     html = urllib.request.urlopen(path).read()
     page_string = text_from_html(html)
 
