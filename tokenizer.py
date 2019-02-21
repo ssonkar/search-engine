@@ -10,7 +10,7 @@ def generateTokens(input_string):
     tokens = []
     temp = ''
     for c in input_string:
-        if(c.isdigit() or c.isalpha()):
+        if(c.isdigit() or ord('a') <= ord(c) <= ord('z')):
             temp += c.lower()
         elif(temp != ''):
             tokens.append(temp)
@@ -70,5 +70,7 @@ def parserMain(text, code):
     for c in ascii_lowercase:
         token_frequency_ordered[c] = {}
     for token in token_frequency:
+        if token[0].isdigit():
+            continue
         token_frequency_ordered[token[0]][token] = token_frequency[token]
     indexFormation.addTokens(token_frequency_ordered,code)
