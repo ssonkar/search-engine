@@ -5,6 +5,7 @@ import collections
 import nltk
 import indexFormation
 
+
 def generateTokens(input_string):
     Token = []
     temp = ''
@@ -20,7 +21,7 @@ def generateTokens(input_string):
 
 
 def tag_visible(element):
-    if element.parent.name in ['style', 'script', 'head', 'title', 'meta', '[document]']:
+    if element.parent.name in ['style', 'script']:
         return False
     if isinstance(element, Comment):
         return False
@@ -36,6 +37,7 @@ def formTokenLists(raw_list):
         out.extend(generateTokens(k))
     out = list(set(out))
     return out
+
 
 def heuristics():
     pass
@@ -62,5 +64,4 @@ def parserMain(text, code):
 
     if('' in token_frequency):
         del token_frequency['']
-    indexFormation.addTokens(token_frequency,code)
-    
+    indexFormation.addTokens(token_frequency, code)
