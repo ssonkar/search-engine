@@ -3,7 +3,7 @@ from bs4.element import Comment
 import urllib.request
 import collections
 from nltk.stem.porter import*
-#import indexFormation
+import indexFormation
 
 def generateTokens(input_string):
     stemmer = PorterStemmer()
@@ -71,6 +71,4 @@ def parserMain(text, code):
         token_frequency_ordered[c] = {}
     for token in token_frequency:
         token_frequency_ordered[token[0]][token] = token_frequency[token]
-    return token_frequency_ordered
-
-    #indexFormation.addTokens(token_frequency_ordered,code)
+    indexFormation.addTokens(token_frequency_ordered,code)
