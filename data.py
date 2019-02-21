@@ -18,5 +18,5 @@ def read_texts(zipfname):
 
 
 if __name__ == "__main__":
-    globals.init
+    globals.init()
     read_texts("data/webpages.zip")

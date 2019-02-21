@@ -3,7 +3,7 @@ from bs4.element import Comment
 import urllib.request
 import collections
 from nltk.stem.porter import*
-import indexFormation
+#import indexFormation
 
 def generateTokens(input_string):
     stemmer = PorterStemmer()
@@ -65,4 +65,4 @@ def parserMain(text, code):
 
     if('' in token_frequency):
         del token_frequency['']
-    indexFormation.addTokens(token_frequency, code)
+    #indexFormation.addTokens(token_frequency, code)
