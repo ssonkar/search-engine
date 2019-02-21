@@ -41,16 +41,14 @@ def text_from_html(body):
     return u" ".join(t.strip() for t in visible_texts)
 
 
-html = urllib.urlopen('0').read()
-page_string = text_from_html(html)
+def parserMain(path):
+    html = urllib.urlopen(path).read()
+    page_string = text_from_html(html)
 
-Token = generateTokens(page_string)
+    Token = generateTokens(page_string)
 
+    token_frequency = collections.Counter(Token)
 
-token_frequency = collections.Counter(Token)
-
-if('' in token_frequency):
-    del token_frequency['']
-
-for k, v in sorted(token_frequency.items(), key=lambda x: (-x[1], x[0])):
-    print "%s\t%s" % (k, v)
+    if('' in token_frequency):
+        del token_frequency['']
+    return token_frequency
