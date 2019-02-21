@@ -3,6 +3,7 @@ from bs4.element import Comment
 import urllib.request
 import collections
 import nltk
+import indexFormation
 
 def generateTokens(input_string):
     Token = []
@@ -52,9 +53,8 @@ def text_from_html(body):
     return u" ".join(t.strip() for t in visible_texts)
 
 
-def parserMain(path, code):
-    html = urllib.request.urlopen(path).read()
-    page_string = text_from_html(html)
+def parserMain(text, code):
+    page_string = text_from_html(text)
 
     Token = generateTokens(page_string)
 
@@ -62,3 +62,5 @@ def parserMain(path, code):
 
     if('' in token_frequency):
         del token_frequency['']
+    indexFormation.addTokens(token_frequency,code)
+    
