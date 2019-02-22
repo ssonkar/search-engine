@@ -7,9 +7,11 @@ def process_query(query):
     stemmed_query = tokenizer.generateTokens(query)
     file_path = "dump/"+str(stemmed_query[0][0])+'.json'
     result_json = settings.read_json(file_path)
-    if(result_json.get(stemmed_query[0][0])):
-        for json_tuple in result_json[stemmed_query[0][0]]:
-            result_urls.append(settings.code2url[json_tuple[0]])
+    for stem in stemmed_query:
+        if(result_json.get(stem)):
+            if(result_json[stem] != []):
+                for doc_id in result_json[stem]:
+                    result_urls.append(settings.code2url[doc_id[0]])
     return result_urls
 
 if __name__ == "__main__":
