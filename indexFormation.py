@@ -18,8 +18,9 @@ def merge_files(inverted_idx_on_file, docs_freq):
 
 
 def addTokens(token_freq, doc_id, file_mod):
-    for c in token_freq.keys():
-        merge_maps(settings.buffer_dict[c], token_freq[c], doc_id)
+    if doc_id != '':
+        for c in token_freq.keys():
+            merge_maps(settings.buffer_dict[c], token_freq[c], doc_id)
     
     if file_mod == settings.batch_size-1:
         for c in settings.buffer_dict.keys():

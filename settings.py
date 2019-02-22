@@ -38,4 +38,4 @@ def init():
 	reset_buffer()
 	create_dump()  
 	global batch_size
-	batch_size = 1 
+	batch_size = 500 

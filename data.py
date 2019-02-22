@@ -16,6 +16,7 @@ def read_texts(zipfname):
             elif '.json' in filename:
                 json_data = z.read(filename)
                 settings.code2url = json.loads(json_data.decode("utf-8"))
+    tokenizer.write_to_file()
 
 
 if __name__ == "__main__":

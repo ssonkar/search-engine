@@ -4,7 +4,7 @@ import urllib.request
 import collections
 from nltk.stem.porter import*
 import indexFormation
-
+import settings
 
 def generateTokens(input_string):
     stemmer = PorterStemmer()
@@ -49,7 +49,6 @@ def text_from_html(body):
     soup = BeautifulSoup(body, 'html.parser')
     texts = soup.findAll(text=True)
     visible_texts = filter(tag_visible, texts)
-
     title = formTokenLists(soup.find_all('title'))
     headers_1_3 = formTokenLists(soup.find_all(['h1', 'h2', 'h3']))
     headers_4_6 = formTokenLists(soup.find_all(['h4', 'h5', 'h6']))
@@ -61,6 +60,11 @@ def get_token_freq(text):
     page_string = text_from_html(text)
     tokens = generateTokens(page_string)
     return collections.Counter(tokens)
+
+
+def write_to_file():
+    indexFormation.addTokens(dict(),'', settings.batch_size-1)
+
 
 def parserMain(text, code, file_no_mod):
     token_frequency = get_token_freq(text)
