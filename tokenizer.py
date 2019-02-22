@@ -5,6 +5,7 @@ import collections
 from nltk.stem.porter import*
 import indexFormation
 
+
 def generateTokens(input_string):
     stemmer = PorterStemmer()
     tokens = []
@@ -56,13 +57,13 @@ def text_from_html(body):
     return u" ".join(t.strip() for t in visible_texts)
 
 
-def parserMain(text, code):
+def get_token_freq(text):
     page_string = text_from_html(text)
-
     tokens = generateTokens(page_string)
+    return collections.Counter(tokens)
 
-    token_frequency = collections.Counter(tokens)
-
+def parserMain(text, code, file_no_mod):
+    token_frequency = get_token_freq(text)
     if('' in token_frequency):
         del token_frequency['']
     token_frequency_ordered = {}
@@ -73,4 +74,4 @@ def parserMain(text, code):
         if token[0].isdigit():
             continue
         token_frequency_ordered[token[0]][token] = token_frequency[token]
-    indexFormation.addTokens(token_frequency_ordered,code)
+    indexFormation.addTokens(token_frequency_ordered,code, file_no_mod)

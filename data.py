@@ -1,4 +1,4 @@
-import globals
+import settings
 
 
 def read_texts(zipfname):
@@ -6,19 +6,18 @@ def read_texts(zipfname):
     import os
     import tokenizer
     import json
-    import pprint
     files = 0
     with zipfile.ZipFile(zipfname) as z:
         for filename in z.namelist():
             if not filename[-1] == '/' and '.tsv' not in filename and '.json' not in filename:
-                print('Reading File ' + filename)
-                tokenizer.parserMain(z.read(filename), filename[filename.index("/")+1:])
+                print('Reading File No:' +str(files))
+                tokenizer.parserMain(z.read(filename), filename[filename.index("/")+1:], files%(settings.batch_size))
                 files +=1 
             elif '.json' in filename:
                 json_data = z.read(filename)
-                globals.code2url = json.loads(json_data.decode("utf-8"))
+                settings.code2url = json.loads(json_data.decode("utf-8"))
 
 
 if __name__ == "__main__":
-    globals.init()
+    settings.init()
     read_texts("data/webpages.zip")
