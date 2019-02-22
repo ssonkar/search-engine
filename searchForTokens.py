@@ -1,5 +1,5 @@
 import tokenizer
-import globals
+import settings
 import zipfile
 
 def search_main(query):
@@ -16,7 +16,7 @@ def search_main(query):
     searchfile.close()
     result_urls = []
     for code in result_code:
-        result_urls.append(globals.code2url[code])
+        result_urls.append(settings.code2url[code])
     
 
     
