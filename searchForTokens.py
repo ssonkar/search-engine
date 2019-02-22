@@ -11,7 +11,8 @@ def process_query(query):
         if(result_json.get(stem)):
             if(result_json[stem] != []):
                 for doc_id in result_json[stem]:
-                    result_urls.append(settings.code2url[doc_id[0]])
+                    temp = doc_id[0]
+                    result_urls.append(settings.code2url[temp[0]])
     return result_urls
 
 if __name__ == "__main__":
