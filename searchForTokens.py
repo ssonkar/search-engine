@@ -1,22 +1,17 @@
 import tokenizer
-import settings
+import globals
 import zipfile
+import settings.py
+from nltk.stem.porter import*
 
-def search_main(query):
-    zfile_name = ''
-    result_code = []
-    f_name = str(query[0])+''
-    with zipfile.ZipFile(zfile_name) as z:
-        for f_name in z.namelist():
-            searchfile = open(f_name,'r')
-            for line in searchfile:
-                if(query in line):
-                    temp = line.split(':')
-                    result_code.append(temp[2])
-    searchfile.close()
+
+def process_query(query):
     result_urls = []
-    for code in result_code:
-        result_urls.append(settings.code2url[code])
-    
-
-    
+    stemmer = PorterStemmer()
+    stemmed_query = stemmer.stem(query)
+    file_path = "data/"+str(stemmed_query[0])+'.json'
+    result_json = settings.read_json(file_path)
+    if(result_json.get(stemmed_query)):
+        for doc_id, freq in result_json[stemmed_query]:
+            result_paths.append(settings.code2url[doc_id])
+    return result_urls
