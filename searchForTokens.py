@@ -9,13 +9,13 @@ def process_query(query):
     char_2_doc_file = settings.read_json(file_path)
     for stem in stemmed_query:
         if(char_2_doc_file.get(stem)):
-            for doc_id in char_2_doc_file[stem][0]:
+            for doc_id in char_2_doc_file[stem]:
                 result_urls.append(settings.code2url[doc_id[0]])
     return result_urls
 
 if __name__ == "__main__":
     settings.code2url = settings.read_json("dump/bookkeeping.json")
-    res = process_query('anglia')
+    res = process_query('ics')
     print(res)
     res1 = process_query('Informatics')
     res2 = process_query('Mondego')

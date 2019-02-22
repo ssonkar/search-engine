@@ -13,7 +13,7 @@ def merge_files(inverted_idx_on_file, docs_freq):
     for token in docs_freq:
         if not inverted_idx_on_file.get(token):
             inverted_idx_on_file[token] = list()
-        inverted_idx_on_file[token].append(docs_freq[token])
+        inverted_idx_on_file[token].extend(docs_freq[token])
     return inverted_idx_on_file
 
 
