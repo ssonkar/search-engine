@@ -24,14 +24,9 @@ def addTokens(token_freq, doc_id, file_mod):
     if file_mod == settings.batch_size-1:
         for c in settings.buffer_dict.keys():
             file_name = "dump/" + c + ".json" 
-            with open(file_name, 'r+') as file_new:
-                inverted_idx_on_file = json.loads(file_new.read())
-                file_new.close()
+            inverted_idx_on_file = settings.read_json(file_name)
             inverted_idx_on_file = merge_files(inverted_idx_on_file, settings.buffer_dict[c])
-            with open(file_name, 'w') as file_new:
-                json.dump(inverted_idx_on_file, file_new)
-                file_new.close()
-        token_freq[c] = {}
+            settings.write_json(file_name, inverted_idx_on_file, 'w')
         settings.reset_buffer()
 
 ## Unimplemented
