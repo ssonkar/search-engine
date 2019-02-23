@@ -18,8 +18,9 @@ def generateTokens(input_string):
             temp = ''
     if(temp != ''):
         tokens.append(temp)
-    stemmed_tokens = [stemmer.stem(token) for token in tokens]
-    return stemmed_tokens
+    return tokens
+    #stemmed_tokens = [stemmer.stem(token) for token in tokens]
+    #return stemmed_tokens
 
 
 def tag_visible(element):

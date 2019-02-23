@@ -5,3 +5,8 @@ __pycache__/tokenizer.cpython-36.pyc
 dump/*
 __pycache__
 dump.zip
+tokenizer.pyc
+settings.pyc
+analytics/Mondego.txt
+analytics/Irvine.txt
+analytics/Informarics.txt
