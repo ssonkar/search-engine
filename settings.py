@@ -16,7 +16,19 @@ def reset_buffer():
         buffer_dict[c] = dict()
 
 
+def read_zip(zipfname, code):
+    import zipfile
+    archive = zipfile.ZipFile(zipfname)
+    file = archive.read('WEBPAGES_RAW/'+code)
+    return file
+    
+
+
 def write_json(file_path, data_dump, attr):
+    import os
+    path, file_name = os.path.split(file_path)
+    if not os.path.exists(path):
+        os.makedirs(path)
     with open(file_path, attr) as file:
         json.dump(data_dump, file)
         file.close()
@@ -41,6 +53,9 @@ def init():
     global buffer_dict
     global code2url
     global doc_freq
+    global zip_path
+    global doc_freq
+    zip_path = "data/webpages_test.zip"
     code2url = dict()
     buffer_dict = dict()
     doc_freq = dict()

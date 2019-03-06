@@ -23,4 +23,4 @@ def read_texts(zipfname):
 
 if __name__ == "__main__":
     settings.init()
-    read_texts("data/webpages.zip")
+    read_texts(settings.zip_path)
