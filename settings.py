@@ -52,6 +52,7 @@ def read_json(file_path):
 def init():
     global buffer_dict
     global code2url
+    global doc_freq
     global zip_path
     global doc_freq
     zip_path = "data/webpages_test.zip"

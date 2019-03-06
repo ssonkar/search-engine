@@ -2,12 +2,10 @@ from bs4 import BeautifulSoup
 from bs4.element import Comment
 import urllib.request
 import collections
-from nltk.stem.porter import*
 import indexFormation
 import settings
 
 def generateTokens(input_string):
-    stemmer = PorterStemmer()
     tokens = []
     temp = ''
     for c in input_string:
@@ -19,8 +17,6 @@ def generateTokens(input_string):
     if(temp != ''):
         tokens.append(temp)
     return tokens
-    #stemmed_tokens = [stemmer.stem(token) for token in tokens]
-    #return stemmed_tokens
 
 
 def tag_visible(element):
@@ -83,4 +79,5 @@ def parserMain(text, code, file_no_mod):
         if token[0].isdigit():
             continue
         token_frequency_ordered[token[0]][token] = token_frequency[token]
-    indexFormation.addTokens(token_frequency_ordered,code, file_no_mod)
+    indexFormation.addTokens(token_frequency_ordered, code, file_no_mod)
+    indexFormation.add_doc_freq(token_frequency_ordered.keys())

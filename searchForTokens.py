@@ -18,7 +18,6 @@ def process_query(query):
     print('Pages with '+query+' :')
     idx = 1
     for webpage in result_urls:
-        #print(str(idx)+'. '+webpage)
         idx+=1
     print('Returned :' +str(idx)+' pages')
     return result_urls, result_doc_id
