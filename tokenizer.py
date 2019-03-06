@@ -75,5 +75,5 @@ def parserMain(text, code, file_no_mod):
         if token[0].isdigit():
             continue
         token_frequency_ordered[token[0]][token] = token_frequency[token]
-    indexFormation.addTokens(token_frequency_ordered,code, file_no_mod)
+    indexFormation.addTokens(token_frequency_ordered, code, file_no_mod)
     indexFormation.add_doc_freq(token_frequency_ordered.keys())
