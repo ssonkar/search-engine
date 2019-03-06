@@ -48,6 +48,14 @@ def read_chunks(zipfname):
                 settings.code2url = json.loads(json_data.decode("utf-8"))
 
 
+def add_doc_freq(keys):
+    for key in keys:
+        if not settings.doc_freq[key]:
+            settings.doc_freq[key] = 0
+        else:
+            settings.doc_freq[key] += 1
+
+
 if __name__ == "__main__":
     settings.init()
     read_chunks("dump/chunks/webpages.zip")

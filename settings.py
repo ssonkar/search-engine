@@ -40,8 +40,10 @@ def read_json(file_path):
 def init():
     global buffer_dict
     global code2url
+    global doc_freq
     code2url = dict()
     buffer_dict = dict()
+    doc_freq = dict()
     reset_buffer()
     create_dump()  
     global batch_size
