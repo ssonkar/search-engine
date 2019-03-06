@@ -72,6 +72,10 @@ def parserMain(text, code, file_no_mod):
     if('' in token_frequency):
         del token_frequency['']
     token_frequency_ordered = {}
+    
+    ## Writing file term freq to json file
+    settings.write_json('file_tf/'+code+'.json', token_frequency, 'w+')
+
     from string import ascii_lowercase
     for c in ascii_lowercase:
         token_frequency_ordered[c] = {}

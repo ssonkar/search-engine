@@ -30,24 +30,6 @@ def addTokens(token_freq, doc_id, file_mod):
             settings.write_json(file_name, inverted_idx_on_file, 'w')
         settings.reset_buffer()
 
-## Unimplemented
-def read_chunks(zipfname):
-    import zipfile
-    import os
-    import tokenizer
-    import json
-    files = 0
-    with zipfile.ZipFile(zipfname) as z:
-        for filename in z.namelist():
-            if not filename[-1] == '/' and '.tsv' not in filename and '.json' not in filename:
-                print('Reading File ' + filename)
-                tokenizer.parserMain(z.read(filename), filename[filename.index("/")+1:], (files % settings.batch_size))
-                files +=1 
-            elif '.json' in filename:
-                json_data = z.read(filename)
-                settings.code2url = json.loads(json_data.decode("utf-8"))
-
 
 if __name__ == "__main__":
     settings.init()
-    read_chunks("dump/chunks/webpages.zip")
