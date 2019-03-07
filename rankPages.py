@@ -5,7 +5,7 @@ import math
 import heapq
 
 
-def calculate_cosine_sim(doc_vec, query):
+def calculate_cosine_sim_slow(doc_vec, query):
     wt = 0.0
     score = 0.0
     product = 0.0
@@ -17,11 +17,19 @@ def calculate_cosine_sim(doc_vec, query):
     ## add query tfidf
     return product 
 
+
+def calculate_cosine_sim(doc_vec, query):
+    wt = doc_vec[0]
+    vec = doc_vec[1]
+    cos_prod = 0.0
+    for key in query:
+        cos_prod = cos_prod + vec.get(key,0)**2
+    return (cos_prod/wt)
+
 def rank_docs(doc_ids, query):
     ordered_results = []
     for doc_id in doc_ids:
-        file = settings.read_zip("data/webpages.zip", doc_id)
-        doc_vec = settings.read_json("file_tf/"+doc_id+".json")
+        doc_vec = settings.read_json(settings.file_tf_path+doc_id+".json")
         score = calculate_cosine_sim(doc_vec, query)
         heapq.heappush(ordered_results, (-score, doc_id))
     return ordered_results
@@ -32,10 +40,8 @@ def print_results(ranked_doc):
         print('score: '+str(score)+' url: '+ settings.code2url[doc_id])
 
 if __name__ == "__main__":
-    settings.code2url = settings.read_json("dump/bookkeeping.json")
-    settings.doc_freq = settings.read_json("file_df/file_df.json")
-    settings.total_files = 2500
-    query = 'Artificial Intelligence'
+    settings.load_data()
+    query = 'Mondego'
     _, doc_ids, query = searchForTokens.process_query(query)
     ranked_doc = rank_docs(doc_ids, query)
     print_results(ranked_doc)

@@ -70,7 +70,7 @@ def parserMain(text, code, file_no_mod):
     token_frequency_ordered = {}
     
     ## Writing file term freq to json file
-    settings.write_json('file_tf/'+code+'.json', token_frequency, 'w+')
+    settings.write_json('dump/file_tf/'+code+'.json', token_frequency, 'w+')
 
     from string import ascii_lowercase
     for c in ascii_lowercase:

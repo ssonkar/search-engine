@@ -7,7 +7,7 @@ def process_query(query):
     result_urls = []
     result_doc_id = set()
     stemmed_query = tokenizer.generateTokens(query)
-    file_path = "dump/"+str(stemmed_query[0][0])+'.json'
+    file_path = "dump/word2doc/"+str(stemmed_query[0][0])+'.json'
     char_2_doc_file = settings.read_json(file_path)
     for stem in stemmed_query:
         if(char_2_doc_file.get(stem)):

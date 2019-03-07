@@ -24,7 +24,7 @@ def addTokens(token_freq, doc_id, file_mod):
     
     if file_mod == settings.batch_size-1:
         for c in settings.buffer_dict.keys():
-            file_name = "dump/" + c + ".json" 
+            file_name = "dump/word2doc/" + c + ".json" 
             inverted_idx_on_file = settings.read_json(file_name)
             inverted_idx_on_file = merge_files(inverted_idx_on_file, settings.buffer_dict[c])
             settings.write_json(file_name, inverted_idx_on_file, 'w')
