@@ -54,7 +54,7 @@ def init():
     global code2url
     global doc_freq
     global zip_path
-    global doc_freq
+    global total_files
     zip_path = "data/webpages_test.zip"
     code2url = dict()
     buffer_dict = dict()

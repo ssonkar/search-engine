@@ -18,6 +18,8 @@ def read_texts(zipfname):
                 settings.code2url = json.loads(json_data.decode("utf-8"))
                 settings.write_json('dump/bookkeeping.json', settings.code2url, 'w')
     tokenizer.write_to_file()
+    settings.write_json('file_df/file_df.json', settings.doc_freq, 'w+')
+    settings.total_files = files
     print(files)
 
 

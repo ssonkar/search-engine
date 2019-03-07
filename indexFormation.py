@@ -33,10 +33,9 @@ def addTokens(token_freq, doc_id, file_mod):
 
 def add_doc_freq(keys):
     for key in keys:
-        if not settings.doc_freq[key]:
+        if not (key in settings.doc_freq.keys()):
             settings.doc_freq[key] = 0
-        else:
-            settings.doc_freq[key] += 1
+        settings.doc_freq[key] += 1
 
 
 if __name__ == "__main__":

@@ -9,7 +9,7 @@ def generateTokens(input_string):
     tokens = []
     temp = ''
     for c in input_string:
-        if(c.isdigit() or ord('a') <= ord(c) <= ord('z')):
+        if(c.isdigit() or ord('a') <= ord(c) <= ord('z') or ord('A') <= ord(c) <= ord('Z')):
             temp += c.lower()
         elif(temp != ''):
             tokens.append(temp)
@@ -80,4 +80,4 @@ def parserMain(text, code, file_no_mod):
             continue
         token_frequency_ordered[token[0]][token] = token_frequency[token]
     indexFormation.addTokens(token_frequency_ordered, code, file_no_mod)
-    indexFormation.add_doc_freq(token_frequency_ordered.keys())
+    indexFormation.add_doc_freq(token_frequency.keys())

@@ -20,7 +20,7 @@ def process_query(query):
     for webpage in result_urls:
         idx+=1
     print('Returned :' +str(idx)+' pages')
-    return result_urls, result_doc_id
+    return result_urls, result_doc_id, stemmed_query
 
 if __name__ == "__main__":
     settings.code2url = settings.read_json("dump/bookkeeping.json")
