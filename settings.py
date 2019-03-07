@@ -51,6 +51,20 @@ def read_json(file_path):
     return json_obj
 
 
+def take_backup(src):
+    import shutil
+    import errno
+    dest = 'backup/'+src
+    try:
+        shutil.copytree(src, dest)
+    except OSError as e:
+        # If the error was caused because the source wasn't a directory
+        if e.errno == errno.ENOTDIR:
+            shutil.copy(src, dest)
+        else:
+            print('Directory not copied. Error: %s' % e)
+
+
 def load_data():
     global code2url
     global total_files
@@ -72,9 +86,9 @@ def init():
     reset_buffer()
     create_dump()  
 
-zip_path = "data/webpages_test.zip"
+zip_path = "data/webpages.zip"
 book_keeping_path = "dump/bookkeeping.json"
 doc_freq_path = "dump/file_df/file_df.json"
 file_tf_path = "dump/file_tf/"
 total_files_path = "dump/file_df/total_files.json"
-batch_size = 500
+batch_size = 1000

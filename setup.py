@@ -11,4 +11,5 @@ if __name__ == "__main__":
         settings.init()
         generate_dump.read_texts(settings.zip_path)
     settings.load_data()
+    settings.take_backup(settings.file_tf_path)
     generate_dump.convert_tf_vec()

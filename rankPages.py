@@ -41,7 +41,7 @@ def print_results(ranked_doc):
 
 if __name__ == "__main__":
     settings.load_data()
-    query = 'Mondego'
+    query = 'Artificial Intelligence'
     _, doc_ids, query = searchForTokens.process_query(query)
     ranked_doc = rank_docs(doc_ids, query)
     print_results(ranked_doc)
