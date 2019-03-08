@@ -66,6 +66,7 @@ def take_backup(src):
 
 
 def load_data():
+    print('Loading Data')
     global code2url
     global total_files
     global doc_freq
