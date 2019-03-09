@@ -47,16 +47,27 @@ def text_from_html(body):
     texts = soup.findAll(text=True)
     visible_texts = filter(tag_visible, texts)
     title = formTokenLists(soup.find_all('title'))
-    headers_1_3 = formTokenLists(soup.find_all(['h1', 'h2', 'h3']))
-    headers_4_6 = formTokenLists(soup.find_all(['h4', 'h5', 'h6']))
+    headers_1_2 = formTokenLists(soup.find_all(['h1', 'h2']))
+    headers_3 = formTokenLists(soup.find_all(['h3']))
     body = formTokenLists(soup.find_all('body'))
-    return u" ".join(t.strip() for t in visible_texts)
+    return (u" ".join(t.strip() for t in visible_texts),(headers_1_2,headers_3))
 
 
 def get_token_freq(text):
-    page_string = text_from_html(text)
+    (page_string,(h_1_2,h3)) = text_from_html(text)
     tokens = generateTokens(page_string)
-    return collections.Counter(tokens)
+    token_freq = collections.Counter(tokens)
+    for i in h_1_2:
+        if(token_freq.get(i)):
+            token_freq[i] += 1
+        else:
+            token_freq[i] = 1
+    for i in h3:
+        if(token_freq.get(i)):
+            token_freq[i] += .75
+        else:
+            token_freq[i] = .75
+    return token_freq
 
 
 def write_to_file():
