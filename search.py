@@ -9,6 +9,8 @@ app = Flask(__name__)
 def print_results(ranked_doc):
     urls =[]
     while ranked_doc:
+        if(len(urls) == 5000):
+            break
         (score, doc_id) = heapq.heappop(ranked_doc)
         #print('score: '+str(score)+' url: '+ settings.code2url[doc_id])
         urls.append(settings.code2url[doc_id])

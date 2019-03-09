@@ -6,7 +6,7 @@ if __name__ == "__main__":
     ## Initializes everything
     ## 1: Run everything
     ## 2: Only convert vec to idf
-    choice =2
+    choice =1
     if choice== 1:
         settings.init()
         generate_dump.read_texts(settings.zip_path)

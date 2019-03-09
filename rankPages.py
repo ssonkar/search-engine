@@ -31,7 +31,10 @@ def rank_docs(doc_ids, query):
     for doc_id in doc_ids:
         doc_vec = settings.read_json(settings.file_tf_path+doc_id+".json")
         score = calculate_cosine_sim(doc_vec, query)
-        heapq.heappush(ordered_results, (-score, doc_id))
+        if(len(ordered_results) > 100):
+            heapq.heappushpop(ordered_results,(-score, doc_id))
+        else:
+            heapq.heappush(ordered_results, (-score, doc_id))
     return ordered_results
         
 def print_results(ranked_doc):
